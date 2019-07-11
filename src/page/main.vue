@@ -1,7 +1,7 @@
 <template>
 	<div id="main">
 		<el-container class="container-position">
-			<el-header height="50px" class="header-position">
+			<el-header height="50px" style="margin:0px;padding:0px;">
 				<v-header></v-header>
 			</el-header>
 			<el-container>

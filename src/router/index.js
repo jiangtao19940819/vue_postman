@@ -12,6 +12,7 @@ import TestResult from '@/page/TestResult'
 Vue.use(Router)
 
 export default new Router({
+  base: '/autotest/',
   routes: [
     {
       path: '/',

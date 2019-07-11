@@ -120,6 +120,7 @@ export default {
       this.deleteProjectDialog = true;
     },
     ensureDeleteProject(){
+      console.log(this.project.project_id)
       this.$http.post("project/delete",{"project_id":this.project.project_id}).then(res=>{
         this.response = res;
         this.getProject();
@@ -128,7 +129,7 @@ export default {
       })
     },
     getProject(){
-      this.$http.get("project/get",this.project).then(res=>{
+      this.$http.get("project/query",this.project).then(res=>{
         this.response = res;
         this.projectData = res.data;
       })

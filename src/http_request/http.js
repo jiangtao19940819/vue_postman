@@ -1,6 +1,8 @@
 import axios from 'axios'
 let request = axios.create({
-	baseURL:"http://localhost:8888",
+	//baseURL:"http://localhost:8888",
+	//baseURL:"http://172.16.35.231:8888",
+	baseURL:"http://10.0.2.214:8888",
 	timeout:100000
 })
 
