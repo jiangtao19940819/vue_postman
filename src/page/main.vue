@@ -20,7 +20,7 @@
 	import header from "@/components/header.vue"
 	import aside from "@/components/aside.vue"
 	export default {
-		name : "mian",
+		name : "main-page",
 		data(){
 			return {
 

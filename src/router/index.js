@@ -6,33 +6,42 @@ import Api from '@/page/ApiManage'
 import Case from '@/page/CaseManage'
 import CaseRun from '@/page/CaseRun'
 import TestResult from '@/page/TestResult'
-
-
+import Login from '@/page/login'
+import Main from '@/page/main'
 
 Vue.use(Router)
 
 export default new Router({
-  base: '/autotest/',
   routes: [
-    {
+  	{
       path: '/',
-      redirect: '/project'
+      redirect: "/main/project"
     },{
-      path: '/project',
-      component: Project
+      path: '/login',
+      component: Login
     },{
-      path: '/api',
-      component: Api
-  	},{
-      path: '/case',
-      component: Case
-  	},{
-      path: '/caserun',
-      component: CaseRun
-  	},{
-      path: '/testresult',
-      component: TestResult
-  	}
+      path: '/main',
+      component: Main,
+      redirect: "/main/project",
+      children: [
+      	{
+	      path: 'project',
+	      component: Project
+	    },{
+	      path: 'api',
+	      component: Api
+	  	},{
+	      path: 'case',
+	      component: Case
+	  	},{
+	      path: 'caserun',
+	      component: CaseRun
+	  	},{
+	      path: 'testresult',
+	      component: TestResult
+	  	}
 
+      ]
+    }
   ]
 })

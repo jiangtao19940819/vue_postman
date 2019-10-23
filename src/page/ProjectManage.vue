@@ -75,6 +75,7 @@
 export default {
   name: 'HelloWorld',
   data () {
+    let username = window.localStorage.username;
     return {
       msg: 'Welcome to Your Vue.js App',
       projectData : [],
@@ -91,6 +92,7 @@ export default {
         data: []
       },
       search: "",
+      username: username,
       deleteProjectDialog:false,
       editProjectDialog:false
     }
@@ -135,6 +137,7 @@ export default {
       })
     },
     createProject(){
+      alert(this.username);
       this.project.project_description = "";
       this.project.project_name = "";
       this.createProjectDialog = true;
