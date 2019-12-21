@@ -16,7 +16,7 @@
 			</el-col>
 			<el-col :span=15>
 				<div class="grid-content bg">
-					<el-input placeholder="输入请求URL" v-model="request_url" clearable></el-input>
+					<el-input placeholder="输入请求URL" v-model="request_all_url" clearable @clear="clear()"></el-input>
 				</div>
 			</el-col>
 			<el-col :span=1>
@@ -132,7 +132,7 @@
 					{value:"DELETE",label:"DELETE"},
 					{value:"PUT",label:"PUT"}
 				],
-				request_url:"",
+				//request_url:"",
 				activeName:"params",
 				param_data:[
 					{key:null,value:null}
@@ -159,10 +159,55 @@
 			        msg: "",
 			        data: []
       			},
+      			request_url:"",
       			resp:""
 			}
 		},
+		computed:{
+			request_all_url: {
+				set: function(value){
+					console.log(value);
+					this.request_url = value;
+					if(value.indexOf("?") > 0){
+						let array1 = value.split("?");
+						let array2 = array1[1].split("&");
+						let array3 = [];
+						array2.forEach((x)=>{
+							let map1 = {};
+							let array4 = x.split("=");
+							map1["key"] = array4[0];
+							map1["value"] = array4[1];
+							array3.push(map1);
+						});
+					this.param_data = array3;
+					this.request_url = array1[0];
+					};
+				},
+				get: function(){
+					let str = "";
+					for(let index in this.param_data){
+						if(this.param_data[index]["key"] == null){
+							continue;
+						};
+						
+						str += this.param_data[index]["key"]+"="+this.param_data[index]["value"]+"&";
+					};
+					str = str.slice(0,-1);
+					//return this.request_url;
+					if(str!=""){
+						return this.request_url + "?" + str;
+					}else{
+						return this.request_url;
+					};
+				}
+				
+			}
+		},
 		methods:{
+			clear(){
+				this.request_url = "";
+				this.param_data = [{key:null,value:null}];
+			},
 			addParam(){
 				this.param_data.push({key:null,value:null});
 			},
